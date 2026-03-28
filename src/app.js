@@ -1,4 +1,5 @@
 export const CHANNEL_URL = 'https://www.youtube.com/@therealyap'
+/** Permanent Discord server invite link */
 export const DISCORD_URL = 'https://discord.gg/cyVNXY2uV'
 
 export const LOGO_URL = 'https://github.com/user-attachments/assets/3831e048-ffdf-45b9-b28f-c00f8c56001a'
