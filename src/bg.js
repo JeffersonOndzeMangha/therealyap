@@ -22,8 +22,8 @@ export function initBackground() {
   const DARK_BLUE_RGB = '26,53,96'
 
   // --- Stars ---
-  const STAR_COUNT = 120
-  const CLOSE_STAR_COUNT = 20
+  const STAR_COUNT = 140
+  const CLOSE_STAR_COUNT = 30
   const MAX_DIST = 160
 
   // Scroll offset for parallax
@@ -130,6 +130,25 @@ export function initBackground() {
       ring: false,
       glowColor: 'rgba(150,90,150,0.08)',
       parallaxFactor: 0.03,
+    },
+    {
+      x: 0.92, y: 0.18,
+      radius: 10,
+      color: 'rgba(100,180,140,0.25)',
+      highlightColor: 'rgba(100,180,140,0.5)',
+      ring: false,
+      glowColor: 'rgba(80,160,120,0.1)',
+      parallaxFactor: 0.05,
+    },
+    {
+      x: 0.08, y: 0.78,
+      radius: 14,
+      color: 'rgba(200,160,80,0.22)',
+      highlightColor: 'rgba(200,160,80,0.45)',
+      ring: true,
+      ringColor: 'rgba(220,180,100,0.15)',
+      glowColor: 'rgba(180,140,60,0.1)',
+      parallaxFactor: 0.07,
     },
   ]
 
