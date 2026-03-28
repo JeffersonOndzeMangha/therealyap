@@ -31,7 +31,6 @@ export function createNavHTML() {
     <nav id="navbar">
       <a class="nav-brand" href="/">
         ${logoImg('nav-logo', 72, 40)}
-        <span class="nav-brand-name">YAP</span>
       </a>
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
