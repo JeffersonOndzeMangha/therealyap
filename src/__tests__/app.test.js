@@ -8,10 +8,12 @@ import {
   logoImg,
   SOCIAL_LINKS,
   TEAM_MEMBERS,
+  FAQ_ITEMS,
   createNavHTML,
   createHeroHTML,
   createAboutHTML,
   createTeamHTML,
+  createFaqHTML,
   createEpisodesHTML,
   createConnectHTML,
   createFooterHTML,
@@ -176,6 +178,12 @@ describe('createAboutHTML', () => {
     const html = createAboutHTML()
     expect(html).toContain('feature-card')
   })
+
+  it('has role="list" on the features grid and role="listitem" on each card', () => {
+    const html = createAboutHTML()
+    expect(html).toContain('role="list"')
+    expect(html).toContain('role="listitem"')
+  })
 })
 
 describe('createTeamHTML', () => {
@@ -200,6 +208,49 @@ describe('createTeamHTML', () => {
     const html = createTeamHTML()
     expect(html).toContain('team-card')
     expect(html).toContain('team-role')
+  })
+
+  it('has role="list" on the team grid and role="listitem" on each card', () => {
+    const html = createTeamHTML()
+    expect(html).toContain('role="list"')
+    expect(html).toContain('role="listitem"')
+  })
+})
+
+describe('FAQ_ITEMS', () => {
+  it('contains at least one FAQ item', () => {
+    expect(FAQ_ITEMS.length).toBeGreaterThan(0)
+  })
+
+  it('every FAQ item has a question and answer', () => {
+    for (const item of FAQ_ITEMS) {
+      expect(item).toHaveProperty('question')
+      expect(item).toHaveProperty('answer')
+      expect(item.question.length).toBeGreaterThan(0)
+      expect(item.answer.length).toBeGreaterThan(0)
+    }
+  })
+})
+
+describe('createFaqHTML', () => {
+  it('contains the faq section', () => {
+    const html = createFaqHTML()
+    expect(html).toContain('id="faq"')
+  })
+
+  it('renders all FAQ questions', () => {
+    const html = createFaqHTML()
+    for (const item of FAQ_ITEMS) {
+      expect(html).toContain(item.question)
+      expect(html).toContain(item.answer)
+    }
+  })
+
+  it('uses a dl/dt/dd structure', () => {
+    const html = createFaqHTML()
+    expect(html).toContain('<dl')
+    expect(html).toContain('<dt')
+    expect(html).toContain('<dd')
   })
 })
 
@@ -281,6 +332,7 @@ describe('renderApp', () => {
     expect(container.querySelector('#hero')).not.toBeNull()
     expect(container.querySelector('#about')).not.toBeNull()
     expect(container.querySelector('#team')).not.toBeNull()
+    expect(container.querySelector('#faq')).not.toBeNull()
     expect(container.querySelector('#episodes')).not.toBeNull()
     expect(container.querySelector('#connect')).not.toBeNull()
     expect(container.querySelector('#footer')).not.toBeNull()
