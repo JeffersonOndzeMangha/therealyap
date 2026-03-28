@@ -1,5 +1,101 @@
 /* ── YAP – Yet Another Podcast ── */
 
+/* ── Animated 3-D Background ── */
+
+#bg-canvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.7;
+}
+
+.bg-orbs {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.bg-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  will-change: transform;
+}
+
+/* Top-centre accent orb */
+.bg-orb-1 {
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(255, 85, 51, 0.13) 0%, transparent 70%);
+  top: -220px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: orb-float-1 22s ease-in-out infinite;
+}
+
+/* Right accent orb */
+.bg-orb-2 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(255, 119, 85, 0.09) 0%, transparent 70%);
+  top: 20%;
+  right: -160px;
+  animation: orb-float-2 28s ease-in-out infinite;
+}
+
+/* Bottom-left blue depth orb */
+.bg-orb-3 {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(15, 35, 71, 0.8) 0%, transparent 70%);
+  bottom: -100px;
+  left: 10%;
+  animation: orb-float-3 20s ease-in-out infinite;
+}
+
+/* Mid-left subtle accent orb */
+.bg-orb-4 {
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(circle, rgba(255, 85, 51, 0.07) 0%, transparent 70%);
+  top: 55%;
+  left: -120px;
+  animation: orb-float-4 34s ease-in-out infinite;
+}
+
+@keyframes orb-float-1 {
+  0%, 100% { transform: translateX(-50%) translateY(0) scale(1); }
+  33%       { transform: translateX(-44%) translateY(-70px) scale(1.12); }
+  66%       { transform: translateX(-56%) translateY(45px) scale(0.94); }
+}
+
+@keyframes orb-float-2 {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  40%       { transform: translateY(-90px) rotate(18deg); }
+  70%       { transform: translateY(55px) rotate(-12deg); }
+}
+
+@keyframes orb-float-3 {
+  0%, 100% { transform: translateX(0) scale(1); }
+  50%       { transform: translateX(90px) scale(1.18); }
+}
+
+@keyframes orb-float-4 {
+  0%, 100% { transform: translate(0, 0); }
+  25%       { transform: translate(35px, -55px); }
+  75%       { transform: translate(-25px, 65px); }
+}
+
+/* Respect reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .bg-orb, .hero-grid {
+    animation: none !important;
+  }
+}
+
 :root {
   --bg: #091526;
   --bg-card: #0f2347;
@@ -26,6 +122,12 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+/* Ensure page content sits above fixed background layers */
+#app {
+  position: relative;
+  z-index: 1;
 }
 
 a {
@@ -116,15 +218,40 @@ ul {
 
 /* ── Hero ── */
 #hero {
+  position: relative;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: calc(100svh - 64px);
   padding: 80px 24px;
   text-align: center;
-  background:
-    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(255, 85, 51, 0.15) 0%, transparent 70%),
-    var(--bg);
+  /* Keep the accent glow overlay; base is now transparent → canvas shows through */
+  background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(255, 85, 51, 0.15) 0%, transparent 70%);
+}
+
+/* Perspective grid drawn at the bottom of the hero for 3-D depth */
+.hero-grid {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 220px;
+  background-image:
+    linear-gradient(rgba(26, 53, 96, 0.45) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(26, 53, 96, 0.45) 1px, transparent 1px);
+  background-size: 60px 60px;
+  transform: perspective(500px) rotateX(65deg);
+  transform-origin: bottom center;
+  mask-image: linear-gradient(to top, rgba(0, 0, 0, 0.5) 0%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 0.5) 0%, transparent 100%);
+  pointer-events: none;
+  animation: grid-scroll 6s linear infinite;
+}
+
+@keyframes grid-scroll {
+  from { background-position: 0 0; }
+  to   { background-position: 0 60px; }
 }
 
 .hero-content {
@@ -289,9 +416,7 @@ section {
 /* ── Episodes ── */
 #episodes {
   border-top: 1px solid var(--border);
-  background:
-    radial-gradient(ellipse 60% 40% at 50% 100%, rgba(255, 85, 51, 0.08) 0%, transparent 70%),
-    var(--bg);
+  background: radial-gradient(ellipse 60% 40% at 50% 100%, rgba(255, 85, 51, 0.08) 0%, transparent 70%);
 }
 
 .episodes-cta {

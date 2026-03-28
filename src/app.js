@@ -49,6 +49,7 @@ export function createNavHTML() {
 export function createHeroHTML() {
   return `
     <section id="hero">
+      <div class="hero-grid" aria-hidden="true"></div>
       <div class="hero-content">
         ${logoImg('hero-logo', 420, 237)}
         <span class="hero-badge">🎙️ New Episodes Every Week</span>
@@ -159,8 +160,21 @@ export function createFooterHTML() {
   `
 }
 
+export function createBackgroundHTML() {
+  return `
+    <canvas id="bg-canvas" aria-hidden="true"></canvas>
+    <div class="bg-orbs" aria-hidden="true">
+      <div class="bg-orb bg-orb-1"></div>
+      <div class="bg-orb bg-orb-2"></div>
+      <div class="bg-orb bg-orb-3"></div>
+      <div class="bg-orb bg-orb-4"></div>
+    </div>
+  `
+}
+
 export function renderApp(container) {
   container.innerHTML = `
+    ${createBackgroundHTML()}
     ${createNavHTML()}
     <main>
       ${createHeroHTML()}
