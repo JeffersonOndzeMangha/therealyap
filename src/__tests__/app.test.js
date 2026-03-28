@@ -1,6 +1,7 @@
 import { describe, it, expect, beforeEach } from 'vitest'
 import {
   CHANNEL_URL,
+  DISCORD_URL,
   LOGO_URL,
   LOGO_FALLBACK_URL,
   LOGO_ALT,
@@ -10,6 +11,7 @@ import {
   createNavHTML,
   createHeroHTML,
   createAboutHTML,
+  createTeamHTML,
   createEpisodesHTML,
   createConnectHTML,
   createFooterHTML,
@@ -20,6 +22,12 @@ describe('CHANNEL_URL', () => {
   it('points to the YAP YouTube channel', () => {
     expect(CHANNEL_URL).toContain('youtube.com')
     expect(CHANNEL_URL).toContain('therealyap')
+  })
+})
+
+describe('DISCORD_URL', () => {
+  it('points to the YAP Discord server', () => {
+    expect(DISCORD_URL).toContain('discord.gg')
   })
 })
 
@@ -67,6 +75,18 @@ describe('SOCIAL_LINKS', () => {
       expect(link.url).toMatch(/^https?:\/\//)
     }
   })
+
+  it('includes a Discord link', () => {
+    const discord = SOCIAL_LINKS.find((l) => l.name === 'Discord')
+    expect(discord).toBeDefined()
+    expect(discord.url).toContain('discord.gg')
+  })
+
+  it('Instagram points to therealyap.official', () => {
+    const ig = SOCIAL_LINKS.find((l) => l.name === 'Instagram')
+    expect(ig).toBeDefined()
+    expect(ig.url).toContain('therealyap.official')
+  })
 })
 
 describe('createNavHTML', () => {
@@ -89,6 +109,13 @@ describe('createNavHTML', () => {
     expect(html).toContain(LOGO_URL)
     expect(html).toContain(LOGO_ALT)
     expect(html).toContain('nav-logo')
+  })
+
+  it('includes a Discord icon link', () => {
+    const html = createNavHTML()
+    expect(html).toContain(DISCORD_URL)
+    expect(html).toContain('discord-icon')
+    expect(html).toContain('nav-icon-link')
   })
 })
 
@@ -149,21 +176,28 @@ describe('createAboutHTML', () => {
     const html = createAboutHTML()
     expect(html).toContain('feature-card')
   })
+})
+
+describe('createTeamHTML', () => {
+  it('contains the team section', () => {
+    const html = createTeamHTML()
+    expect(html).toContain('id="team"')
+  })
 
   it('renders all team members by name', () => {
-    const html = createAboutHTML()
+    const html = createTeamHTML()
     for (const m of TEAM_MEMBERS) {
       expect(html).toContain(m.name)
     }
   })
 
   it('includes the Meet the Team heading', () => {
-    const html = createAboutHTML()
+    const html = createTeamHTML()
     expect(html).toContain('Meet the Team')
   })
 
   it('renders team cards with roles', () => {
-    const html = createAboutHTML()
+    const html = createTeamHTML()
     expect(html).toContain('team-card')
     expect(html).toContain('team-role')
   })
@@ -193,6 +227,14 @@ describe('createConnectHTML', () => {
       expect(html).toContain(link.url)
       expect(html).toContain(link.label)
     }
+  })
+
+  it('includes a Discord CTA with logo and title', () => {
+    const html = createConnectHTML()
+    expect(html).toContain('discord-cta')
+    expect(html).toContain('Join us on Discord')
+    expect(html).toContain('discord-icon')
+    expect(html).toContain(DISCORD_URL)
   })
 })
 
@@ -238,6 +280,7 @@ describe('renderApp', () => {
     expect(container.querySelector('#navbar')).not.toBeNull()
     expect(container.querySelector('#hero')).not.toBeNull()
     expect(container.querySelector('#about')).not.toBeNull()
+    expect(container.querySelector('#team')).not.toBeNull()
     expect(container.querySelector('#episodes')).not.toBeNull()
     expect(container.querySelector('#connect')).not.toBeNull()
     expect(container.querySelector('#footer')).not.toBeNull()
