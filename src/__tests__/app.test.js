@@ -1,6 +1,8 @@
 import { describe, it, expect, beforeEach } from 'vitest'
 import {
   CHANNEL_URL,
+  LOGO_URL,
+  LOGO_ALT,
   SOCIAL_LINKS,
   createNavHTML,
   createHeroHTML,
@@ -15,6 +17,19 @@ describe('CHANNEL_URL', () => {
   it('points to the YAP YouTube channel', () => {
     expect(CHANNEL_URL).toContain('youtube.com')
     expect(CHANNEL_URL).toContain('therealyap')
+  })
+})
+
+describe('LOGO_URL / LOGO_ALT', () => {
+  it('LOGO_URL is a non-empty string', () => {
+    expect(typeof LOGO_URL).toBe('string')
+    expect(LOGO_URL.length).toBeGreaterThan(0)
+  })
+
+  it('LOGO_ALT describes the logo', () => {
+    expect(typeof LOGO_ALT).toBe('string')
+    expect(LOGO_ALT.length).toBeGreaterThan(0)
+    expect(LOGO_ALT.toLowerCase()).toContain('logo')
   })
 })
 
@@ -46,6 +61,13 @@ describe('createNavHTML', () => {
     expect(html).toContain('youtube.com')
     expect(html).toContain('Watch Now')
   })
+
+  it('renders the logo image in the navbar', () => {
+    const html = createNavHTML()
+    expect(html).toContain(LOGO_URL)
+    expect(html).toContain(LOGO_ALT)
+    expect(html).toContain('nav-logo')
+  })
 })
 
 describe('createHeroHTML', () => {
@@ -63,6 +85,13 @@ describe('createHeroHTML', () => {
   it('mentions the podcast name', () => {
     const html = createHeroHTML()
     expect(html.toLowerCase()).toContain('podcast')
+  })
+
+  it('renders the logo image in the hero', () => {
+    const html = createHeroHTML()
+    expect(html).toContain(LOGO_URL)
+    expect(html).toContain(LOGO_ALT)
+    expect(html).toContain('hero-logo')
   })
 })
 
@@ -121,6 +150,13 @@ describe('createFooterHTML', () => {
     const html = createFooterHTML()
     expect(html).toContain('YAP')
   })
+
+  it('renders the logo image in the footer', () => {
+    const html = createFooterHTML()
+    expect(html).toContain(LOGO_URL)
+    expect(html).toContain(LOGO_ALT)
+    expect(html).toContain('footer-logo')
+  })
 })
 
 describe('renderApp', () => {
@@ -143,5 +179,14 @@ describe('renderApp', () => {
     expect(container.querySelector('#episodes')).not.toBeNull()
     expect(container.querySelector('#connect')).not.toBeNull()
     expect(container.querySelector('#footer')).not.toBeNull()
+  })
+
+  it('renders logo images in navbar, hero and footer', () => {
+    renderApp(container)
+    const logos = container.querySelectorAll(`img[src="${LOGO_URL}"]`)
+    expect(logos.length).toBeGreaterThanOrEqual(3)
+    logos.forEach((img) => {
+      expect(img.getAttribute('alt')).toBe(LOGO_ALT)
+    })
   })
 })
