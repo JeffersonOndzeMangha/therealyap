@@ -112,6 +112,7 @@
   --border: #1a3560;
   --radius: 12px;
   --max-width: 1100px;
+  --discord: #5865F2;
   --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
 
   font-family: var(--sans);
@@ -209,6 +210,30 @@ ul {
   background: var(--accent-hover) !important;
 }
 
+.nav-icon-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(88, 101, 242, 0.15);
+  border: 1px solid rgba(88, 101, 242, 0.3);
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+}
+
+.nav-icon-link:hover {
+  background: rgba(88, 101, 242, 0.3);
+  border-color: rgba(88, 101, 242, 0.6);
+  transform: scale(1.1);
+}
+
+.nav-icon {
+  fill: var(--discord);
+  width: 20px;
+  height: 20px;
+}
+
 @media (max-width: 640px) {
   .nav-links {
     gap: 16px;
@@ -216,7 +241,8 @@ ul {
   }
   .nav-links li:nth-child(1),
   .nav-links li:nth-child(2),
-  .nav-links li:nth-child(3) {
+  .nav-links li:nth-child(3),
+  .nav-links li:nth-child(4) {
     display: none;
   }
 }
@@ -427,13 +453,10 @@ section {
 
 /* ── Meet the Team ── */
 
-.team-section-title {
-  margin-top: 80px;
-}
-
 .team-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 40px;
   text-align: center;
 }
@@ -443,6 +466,7 @@ section {
   border: 1px solid var(--border);
   border-radius: 16px;
   padding: 36px 24px 32px;
+  width: 300px;
   transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
   perspective: 600px;
 }
@@ -529,24 +553,16 @@ section {
   color: var(--text);
 }
 
-/* Stack team cards on medium screens: 3 on top row, 2 centered below */
+/* Stack team cards on smaller screens */
 @media (max-width: 900px) {
-  .team-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .team-card:last-child {
-    grid-column: 1 / -1;
-    max-width: 340px;
-    justify-self: center;
+  .team-card {
+    width: 280px;
   }
 }
 
 @media (max-width: 560px) {
-  .team-grid {
-    grid-template-columns: 1fr;
-  }
-  .team-card:last-child {
-    max-width: none;
+  .team-card {
+    width: 100%;
   }
 }
 
@@ -589,6 +605,57 @@ section {
   border-color: var(--accent);
   background: rgba(255, 85, 51, 0.08);
   transform: translateY(-2px);
+}
+
+.social-icon {
+  fill: var(--discord);
+  flex-shrink: 0;
+}
+
+.discord-cta {
+  margin-top: 60px;
+}
+
+.discord-cta-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 40px 32px;
+  background: rgba(88, 101, 242, 0.08);
+  border: 1px solid rgba(88, 101, 242, 0.3);
+  border-radius: 20px;
+  transition: border-color 0.3s, background 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+
+.discord-cta-link:hover {
+  border-color: rgba(88, 101, 242, 0.6);
+  background: rgba(88, 101, 242, 0.14);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(88, 101, 242, 0.15);
+}
+
+.discord-cta-icon {
+  fill: var(--discord);
+  filter: drop-shadow(0 0 16px rgba(88, 101, 242, 0.4));
+  transition: filter 0.3s, transform 0.3s;
+}
+
+.discord-cta-link:hover .discord-cta-icon {
+  filter: drop-shadow(0 0 24px rgba(88, 101, 242, 0.6));
+  transform: scale(1.1);
+}
+
+.discord-cta-title {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--text-heading);
+  letter-spacing: -0.3px;
+}
+
+.discord-cta-desc {
+  font-size: 0.95rem;
+  color: var(--text-muted);
 }
 
 /* ── Footer ── */

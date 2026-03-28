@@ -1,4 +1,6 @@
 export const CHANNEL_URL = 'https://www.youtube.com/@therealyap'
+/** Permanent Discord server invite link */
+export const DISCORD_URL = 'https://discord.gg/cyVNXY2uV'
 
 export const LOGO_URL = 'https://github.com/user-attachments/assets/3831e048-ffdf-45b9-b28f-c00f8c56001a'
 export const LOGO_FALLBACK_URL = '/logo.svg'
@@ -16,13 +18,18 @@ export const SOCIAL_LINKS = [
   },
   {
     name: 'Instagram',
-    url: 'https://www.instagram.com/therealyap',
+    url: 'https://www.instagram.com/therealyap.official',
     label: 'Follow on Instagram',
   },
   {
     name: 'Twitter / X',
     url: 'https://x.com/therealyap',
     label: 'Follow on X',
+  },
+  {
+    name: 'Discord',
+    url: 'https://discord.gg/cyVNXY2uV',
+    label: 'Join us on Discord',
   },
 ]
 
@@ -34,8 +41,14 @@ export function createNavHTML() {
       </a>
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
+        <li><a href="#team">Team</a></li>
         <li><a href="#episodes">Episodes</a></li>
         <li><a href="#connect">Connect</a></li>
+        <li>
+          <a class="nav-icon-link" href="${DISCORD_URL}" target="_blank" rel="noopener noreferrer" aria-label="Join us on Discord">
+            <svg class="nav-icon" viewBox="0 0 20 19" width="22" height="22" aria-hidden="true"><use href="/icons.svg#discord-icon"/></svg>
+          </a>
+        </li>
         <li>
           <a class="nav-cta" href="${CHANNEL_URL}" target="_blank" rel="noopener noreferrer">
             Watch Now
@@ -131,8 +144,16 @@ export function createAboutHTML() {
             <p>Fresh content every week so you never run out of great conversations to enjoy.</p>
           </div>
         </div>
+      </div>
+    </section>
+  `
+}
 
-        <h2 class="section-title team-section-title">Meet the Team</h2>
+export function createTeamHTML() {
+  return `
+    <section id="team" class="cosmic-section">
+      <div class="section-container">
+        <h2 class="section-title">Meet the Team</h2>
         <p class="section-subtitle">
           The crew behind the mic and behind the magic.
         </p>
@@ -184,12 +205,20 @@ export function createConnectHTML() {
             (link) => `
             <li>
               <a class="social-link" href="${link.url}" target="_blank" rel="noopener noreferrer">
+                ${link.name === 'Discord' ? '<svg class="social-icon" viewBox="0 0 20 19" width="20" height="20" aria-hidden="true"><use href="/icons.svg#discord-icon"/></svg>' : ''}
                 ${link.label}
               </a>
             </li>
           `
           ).join('')}
         </ul>
+        <div class="discord-cta">
+          <a class="discord-cta-link" href="${DISCORD_URL}" target="_blank" rel="noopener noreferrer">
+            <svg class="discord-cta-icon" viewBox="0 0 20 19" width="48" height="48" aria-hidden="true"><use href="/icons.svg#discord-icon"/></svg>
+            <span class="discord-cta-title">Join us on Discord</span>
+            <span class="discord-cta-desc">Chat with the community &amp; stay in the loop</span>
+          </a>
+        </div>
       </div>
     </section>
   `
@@ -229,6 +258,7 @@ export function renderApp(container) {
     <main>
       ${createHeroHTML()}
       ${createAboutHTML()}
+      ${createTeamHTML()}
       ${createEpisodesHTML()}
       ${createConnectHTML()}
     </main>
