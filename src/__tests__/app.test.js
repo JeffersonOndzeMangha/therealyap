@@ -73,7 +73,8 @@ describe('createNavHTML', () => {
     const html = createNavHTML()
     expect(typeof html).toBe('string')
     expect(html).toContain('<nav')
-    expect(html).toContain('YAP')
+    expect(html).not.toContain('nav-brand-name')
+    expect(html).not.toContain('>YAP<')
   })
 
   it('includes a Watch Now CTA link to YouTube', () => {
