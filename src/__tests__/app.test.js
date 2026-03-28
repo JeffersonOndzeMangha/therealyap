@@ -6,6 +6,7 @@ import {
   LOGO_ALT,
   logoImg,
   SOCIAL_LINKS,
+  TEAM_MEMBERS,
   createNavHTML,
   createHeroHTML,
   createAboutHTML,
@@ -116,6 +117,28 @@ describe('createHeroHTML', () => {
   })
 })
 
+describe('TEAM_MEMBERS', () => {
+  it('contains five team members', () => {
+    expect(TEAM_MEMBERS).toHaveLength(5)
+  })
+
+  it('every member has name, emoji, role and bio', () => {
+    for (const m of TEAM_MEMBERS) {
+      expect(m).toHaveProperty('name')
+      expect(m).toHaveProperty('emoji')
+      expect(m).toHaveProperty('role')
+      expect(m).toHaveProperty('bio')
+    }
+  })
+
+  it('includes three hosts and two production members', () => {
+    const hosts = TEAM_MEMBERS.filter((m) => m.role === 'Host')
+    const prod = TEAM_MEMBERS.filter((m) => m.role === 'Production')
+    expect(hosts).toHaveLength(3)
+    expect(prod).toHaveLength(2)
+  })
+})
+
 describe('createAboutHTML', () => {
   it('contains the about section', () => {
     const html = createAboutHTML()
@@ -125,6 +148,24 @@ describe('createAboutHTML', () => {
   it('contains feature cards', () => {
     const html = createAboutHTML()
     expect(html).toContain('feature-card')
+  })
+
+  it('renders all team members by name', () => {
+    const html = createAboutHTML()
+    for (const m of TEAM_MEMBERS) {
+      expect(html).toContain(m.name)
+    }
+  })
+
+  it('includes the Meet the Team heading', () => {
+    const html = createAboutHTML()
+    expect(html).toContain('Meet the Team')
+  })
+
+  it('renders team cards with roles', () => {
+    const html = createAboutHTML()
+    expect(html).toContain('team-card')
+    expect(html).toContain('team-role')
   })
 })
 

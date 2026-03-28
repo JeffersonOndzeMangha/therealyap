@@ -71,6 +71,39 @@ export function createHeroHTML() {
   `
 }
 
+export const TEAM_MEMBERS = [
+  {
+    name: 'Jeffy',
+    emoji: '🧔🏿',
+    role: 'Host',
+    bio: 'The voice that started it all. Jeffy brings bold energy and fearless takes to every conversation.',
+  },
+  {
+    name: 'Serenity',
+    emoji: '👩🏾‍🦱',
+    role: 'Host',
+    bio: 'Sharp wit meets genuine warmth. Serenity keeps it real and always asks the questions you\'re thinking.',
+  },
+  {
+    name: 'Mike',
+    emoji: '👨🏿‍🦲',
+    role: 'Host',
+    bio: 'The calm in the storm. Mike brings perspective and depth that turns good chats into great ones.',
+  },
+  {
+    name: 'Cedric',
+    emoji: '🧑🏿‍💻',
+    role: 'Production',
+    bio: 'The wizard behind the scenes. Cedric makes sure every frame and every cut hits just right.',
+  },
+  {
+    name: 'OG Dara',
+    emoji: '🧑🏿‍🎧',
+    role: 'Production',
+    bio: 'Sound, vision, vibes — OG Dara engineers the magic that brings the whole show together.',
+  },
+]
+
 export function createAboutHTML() {
   return `
     <section id="about">
@@ -97,6 +130,23 @@ export function createAboutHTML() {
             <h3>Weekly Episodes</h3>
             <p>Fresh content every week so you never run out of great conversations to enjoy.</p>
           </div>
+        </div>
+
+        <h2 class="section-title team-section-title">Meet the Team</h2>
+        <p class="section-subtitle">
+          The crew behind the mic and behind the magic.
+        </p>
+        <div class="team-grid">
+          ${TEAM_MEMBERS.map(
+            (member) => `
+            <div class="team-card" data-role="${member.role.toLowerCase()}">
+              <div class="team-avatar">${member.emoji}</div>
+              <h3 class="team-name">${member.name}</h3>
+              <span class="team-role">${member.role}</span>
+              <p class="team-bio">${member.bio}</p>
+            </div>
+          `
+          ).join('')}
         </div>
       </div>
     </section>
