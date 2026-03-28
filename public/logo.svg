@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" role="img" aria-label="YAP logo">
+  <!-- Navy background matching the real logo -->
+  <circle cx="100" cy="100" r="100" fill="#091526"/>
+
+  <!-- Outer glow ring -->
+  <circle cx="100" cy="100" r="96" fill="none" stroke="#ff5533" stroke-width="2" opacity="0.4"/>
+
+  <!-- Microphone body -->
+  <rect x="80" y="48" width="40" height="62" rx="20" ry="20" fill="#ff5533"/>
+
+  <!-- Microphone grille lines -->
+  <line x1="80" y1="68" x2="120" y2="68" stroke="#091526" stroke-width="2" opacity="0.4"/>
+  <line x1="80" y1="79" x2="120" y2="79" stroke="#091526" stroke-width="2" opacity="0.4"/>
+  <line x1="80" y1="90" x2="120" y2="90" stroke="#091526" stroke-width="2" opacity="0.4"/>
+
+  <!-- Microphone stand arc -->
+  <path d="M68 110 Q68 142 100 142 Q132 142 132 110" fill="none" stroke="#ff5533" stroke-width="5" stroke-linecap="round"/>
+
+  <!-- Stand vertical line -->
+  <line x1="100" y1="142" x2="100" y2="158" stroke="#ff5533" stroke-width="5" stroke-linecap="round"/>
+
+  <!-- Stand base -->
+  <line x1="80" y1="158" x2="120" y2="158" stroke="#ff5533" stroke-width="5" stroke-linecap="round"/>
+
+  <!-- YAP lettering -->
+  <text x="100" y="192" text-anchor="middle" font-family="system-ui, sans-serif" font-size="16" font-weight="900" fill="#ff5533" letter-spacing="4">YAP</text>
+</svg>
