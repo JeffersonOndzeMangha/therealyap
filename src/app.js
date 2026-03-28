@@ -106,7 +106,7 @@ export const TEAM_MEMBERS = [
 
 export function createAboutHTML() {
   return `
-    <section id="about">
+    <section id="about" class="cosmic-section">
       <div class="section-container">
         <h2 class="section-title">About the Show</h2>
         <p class="section-subtitle">
@@ -155,7 +155,7 @@ export function createAboutHTML() {
 
 export function createEpisodesHTML() {
   return `
-    <section id="episodes">
+    <section id="episodes" class="cosmic-section">
       <div class="section-container">
         <h2 class="section-title">Latest Episodes</h2>
         <p class="section-subtitle">
@@ -173,7 +173,7 @@ export function createEpisodesHTML() {
 
 export function createConnectHTML() {
   return `
-    <section id="connect">
+    <section id="connect" class="cosmic-section">
       <div class="section-container">
         <h2 class="section-title">Connect With Us</h2>
         <p class="section-subtitle">
