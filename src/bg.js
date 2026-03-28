@@ -98,6 +98,7 @@ export function initBackground() {
       x: 0.15, y: 0.25,
       radius: 18,
       color: 'rgba(60,90,140,0.35)',
+      highlightColor: 'rgba(60,90,140,0.6)',
       ring: false,
       glowColor: 'rgba(40,70,120,0.15)',
       parallaxFactor: 0.06,
@@ -106,6 +107,7 @@ export function initBackground() {
       x: 0.82, y: 0.55,
       radius: 28,
       color: 'rgba(140,90,60,0.3)',
+      highlightColor: 'rgba(140,90,60,0.6)',
       ring: true,
       ringColor: 'rgba(180,140,100,0.18)',
       glowColor: 'rgba(120,70,40,0.12)',
@@ -115,6 +117,7 @@ export function initBackground() {
       x: 0.6, y: 0.85,
       radius: 12,
       color: 'rgba(90,160,200,0.25)',
+      highlightColor: 'rgba(90,160,200,0.5)',
       ring: false,
       glowColor: 'rgba(70,140,180,0.1)',
       parallaxFactor: 0.04,
@@ -123,6 +126,7 @@ export function initBackground() {
       x: 0.35, y: 0.65,
       radius: 8,
       color: 'rgba(180,120,180,0.2)',
+      highlightColor: 'rgba(180,120,180,0.4)',
       ring: false,
       glowColor: 'rgba(150,90,150,0.08)',
       parallaxFactor: 0.03,
@@ -148,7 +152,7 @@ export function initBackground() {
         px - p.radius * 0.3, py - p.radius * 0.3, p.radius * 0.1,
         px, py, p.radius
       )
-      grad.addColorStop(0, p.color.replace(/[\d.]+\)$/, '0.6)'))
+      grad.addColorStop(0, p.highlightColor)
       grad.addColorStop(1, p.color)
       ctx.beginPath()
       ctx.arc(px, py, p.radius, 0, Math.PI * 2)
