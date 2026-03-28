@@ -2,7 +2,9 @@ import { describe, it, expect, beforeEach } from 'vitest'
 import {
   CHANNEL_URL,
   LOGO_URL,
+  LOGO_FALLBACK_URL,
   LOGO_ALT,
+  logoImg,
   SOCIAL_LINKS,
   createNavHTML,
   createHeroHTML,
@@ -20,16 +22,34 @@ describe('CHANNEL_URL', () => {
   })
 })
 
-describe('LOGO_URL / LOGO_ALT', () => {
+describe('LOGO_URL / LOGO_FALLBACK_URL / LOGO_ALT', () => {
   it('LOGO_URL is a non-empty string', () => {
     expect(typeof LOGO_URL).toBe('string')
     expect(LOGO_URL.length).toBeGreaterThan(0)
+  })
+
+  it('LOGO_FALLBACK_URL points to the local SVG', () => {
+    expect(typeof LOGO_FALLBACK_URL).toBe('string')
+    expect(LOGO_FALLBACK_URL).toContain('.svg')
   })
 
   it('LOGO_ALT describes the logo', () => {
     expect(typeof LOGO_ALT).toBe('string')
     expect(LOGO_ALT.length).toBeGreaterThan(0)
     expect(LOGO_ALT.toLowerCase()).toContain('logo')
+  })
+})
+
+describe('logoImg', () => {
+  it('returns an img tag with src, alt, onerror and class', () => {
+    const html = logoImg('test-logo', 100, 50)
+    expect(html).toContain(`src="${LOGO_URL}"`)
+    expect(html).toContain(`alt="${LOGO_ALT}"`)
+    expect(html).toContain('onerror=')
+    expect(html).toContain(LOGO_FALLBACK_URL)
+    expect(html).toContain('class="test-logo"')
+    expect(html).toContain('width="100"')
+    expect(html).toContain('height="50"')
   })
 })
 

@@ -1,8 +1,13 @@
 export const CHANNEL_URL = 'https://www.youtube.com/@therealyap'
 
-export const LOGO_URL = '/logo.svg'
+export const LOGO_URL = 'https://github.com/user-attachments/assets/3831e048-ffdf-45b9-b28f-c00f8c56001a'
+export const LOGO_FALLBACK_URL = '/logo.svg'
 export const LOGO_ALT = 'YAP – Yet Another Podcast logo'
 
+/** Returns an img tag that falls back to the local SVG if the primary source fails. */
+export function logoImg(cssClass, width, height) {
+  return `<img class="${cssClass}" src="${LOGO_URL}" alt="${LOGO_ALT}" width="${width}" height="${height}" onerror="this.onerror=null;this.src='${LOGO_FALLBACK_URL}'" />`
+}
 export const SOCIAL_LINKS = [
   {
     name: 'YouTube',
@@ -25,7 +30,7 @@ export function createNavHTML() {
   return `
     <nav id="navbar">
       <a class="nav-brand" href="/">
-        <img class="nav-logo" src="${LOGO_URL}" alt="${LOGO_ALT}" width="36" height="36" />
+        ${logoImg('nav-logo', 72, 40)}
         <span class="nav-brand-name">YAP</span>
       </a>
       <ul class="nav-links">
@@ -46,7 +51,7 @@ export function createHeroHTML() {
   return `
     <section id="hero">
       <div class="hero-content">
-        <img class="hero-logo" src="${LOGO_URL}" alt="${LOGO_ALT}" width="120" height="120" />
+        ${logoImg('hero-logo', 420, 237)}
         <span class="hero-badge">🎙️ New Episodes Every Week</span>
         <h1 class="hero-title">Yet Another<br/><span class="accent">Podcast</span></h1>
         <p class="hero-subtitle">
@@ -146,7 +151,7 @@ export function createFooterHTML() {
     <footer id="footer">
       <div class="footer-content">
         <span class="footer-brand">
-          <img class="footer-logo" src="${LOGO_URL}" alt="${LOGO_ALT}" width="24" height="24" />
+          ${logoImg('footer-logo', 56, 32)}
           YAP – Yet Another Podcast
         </span>
         <span class="footer-copy">&copy; ${year} All rights reserved.</span>
