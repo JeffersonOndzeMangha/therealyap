@@ -42,6 +42,7 @@ export function createNavHTML() {
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
         <li><a href="#team">Team</a></li>
+        <li><a href="#faq">FAQ</a></li>
         <li><a href="#episodes">Episodes</a></li>
         <li><a href="#connect">Connect</a></li>
         <li>
@@ -127,18 +128,18 @@ export function createAboutHTML() {
           to your screen. No scripts, no filters — just honest dialogue between
           real people with real experiences.
         </p>
-        <div class="features-grid">
-          <div class="feature-card">
+        <div class="features-grid" role="list">
+          <div class="feature-card" role="listitem">
             <div class="feature-icon">🎙️</div>
             <h3>Authentic Conversations</h3>
             <p>Unscripted discussions that go deep on topics that actually matter to you.</p>
           </div>
-          <div class="feature-card">
+          <div class="feature-card" role="listitem">
             <div class="feature-icon">🌍</div>
             <h3>Diverse Voices</h3>
             <p>Guests from all walks of life sharing their unique perspectives and stories.</p>
           </div>
-          <div class="feature-card">
+          <div class="feature-card" role="listitem">
             <div class="feature-icon">📅</div>
             <h3>Weekly Episodes</h3>
             <p>Fresh content every week so you never run out of great conversations to enjoy.</p>
@@ -157,10 +158,10 @@ export function createTeamHTML() {
         <p class="section-subtitle">
           The crew behind the mic and behind the magic.
         </p>
-        <div class="team-grid">
+        <div class="team-grid" role="list">
           ${TEAM_MEMBERS.map(
             (member) => `
-            <div class="team-card" data-role="${member.role.toLowerCase()}">
+            <div class="team-card" role="listitem" data-role="${member.role.toLowerCase()}">
               <div class="team-avatar">${member.emoji}</div>
               <h3 class="team-name">${member.name}</h3>
               <span class="team-role">${member.role}</span>
@@ -169,6 +170,57 @@ export function createTeamHTML() {
           `
           ).join('')}
         </div>
+      </div>
+    </section>
+  `
+}
+
+export const FAQ_ITEMS = [
+  {
+    question: 'What is YAP?',
+    answer:
+      'YAP – Yet Another Podcast – is an unscripted YouTube show where Jeffy, Serenity, and Mike dive into real conversations about culture, creativity, tech, and everyday life. No filters, no teleprompters.',
+  },
+  {
+    question: 'How often do you release new episodes?',
+    answer:
+      'New episodes drop every week. Subscribe on YouTube and turn on notifications so you never miss a drop.',
+  },
+  {
+    question: 'Where can I watch or listen?',
+    answer:
+      'Every episode is on our YouTube channel. You can also connect with the community on Discord, Instagram, and X (Twitter).',
+  },
+  {
+    question: 'Can I suggest a topic or guest?',
+    answer:
+      'Absolutely! Jump into our Discord server and head to the suggestions channel — the hosts read every message.',
+  },
+  {
+    question: 'Is YAP suitable for all audiences?',
+    answer:
+      'YAP features candid, unfiltered conversations that may include mature themes and strong language. Best enjoyed by audiences 16+.',
+  },
+]
+
+export function createFaqHTML() {
+  return `
+    <section id="faq" class="cosmic-section">
+      <div class="section-container">
+        <h2 class="section-title">What to Expect</h2>
+        <p class="section-subtitle">
+          New here? Here are answers to the questions first-time listeners ask most.
+        </p>
+        <dl class="faq-list">
+          ${FAQ_ITEMS.map(
+            (item) => `
+            <div class="faq-item">
+              <dt class="faq-question">${item.question}</dt>
+              <dd class="faq-answer">${item.answer}</dd>
+            </div>
+          `
+          ).join('')}
+        </dl>
       </div>
     </section>
   `
@@ -259,6 +311,7 @@ export function renderApp(container) {
       ${createHeroHTML()}
       ${createAboutHTML()}
       ${createTeamHTML()}
+      ${createFaqHTML()}
       ${createEpisodesHTML()}
       ${createConnectHTML()}
     </main>

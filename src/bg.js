@@ -234,5 +234,19 @@ export function initBackground() {
   }
   tick()
 
-  return () => cancelAnimationFrame(rafId)
+  // Pause animation when tab is hidden to save battery
+  function handleVisibilityChange() {
+    if (document.hidden) {
+      cancelAnimationFrame(rafId)
+      rafId = null
+    } else if (rafId === null) {
+      tick()
+    }
+  }
+  document.addEventListener('visibilitychange', handleVisibilityChange)
+
+  return () => {
+    cancelAnimationFrame(rafId)
+    document.removeEventListener('visibilitychange', handleVisibilityChange)
+  }
 }
