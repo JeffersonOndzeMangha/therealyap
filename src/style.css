@@ -347,7 +347,7 @@ ul {
 
 /* ── Sections ── */
 section {
-  padding: 100px 24px;
+  padding: 140px 24px;
 }
 
 .section-container {
@@ -413,10 +413,134 @@ section {
   line-height: 1.6;
 }
 
+/* ── Meet the Team ── */
+
+.team-section-title {
+  margin-top: 80px;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  text-align: center;
+}
+
+.team-card {
+  background: rgba(15, 35, 71, 0.6);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 36px 24px 32px;
+  transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+  perspective: 600px;
+}
+
+.team-card:hover {
+  transform: translateY(-6px) scale(1.03);
+  border-color: var(--accent);
+  box-shadow: 0 12px 40px rgba(255, 85, 51, 0.15), 0 0 20px rgba(255, 85, 51, 0.06);
+}
+
+.team-card[data-role="production"] {
+  border-color: rgba(90, 122, 154, 0.4);
+}
+
+.team-card[data-role="production"]:hover {
+  border-color: rgba(90, 200, 255, 0.6);
+  box-shadow: 0 12px 40px rgba(90, 200, 255, 0.12), 0 0 20px rgba(90, 200, 255, 0.05);
+}
+
+.team-avatar {
+  width: 96px;
+  height: 96px;
+  margin: 0 auto 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3.4rem;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 85, 51, 0.12) 0%, rgba(15, 35, 71, 0.9) 70%);
+  border: 2px solid rgba(255, 85, 51, 0.3);
+  box-shadow: 0 0 24px rgba(255, 85, 51, 0.1);
+  transition: box-shadow 0.3s, border-color 0.3s;
+}
+
+.team-card:hover .team-avatar {
+  box-shadow: 0 0 30px rgba(255, 85, 51, 0.25);
+  border-color: var(--accent);
+}
+
+.team-card[data-role="production"] .team-avatar {
+  background: radial-gradient(circle, rgba(90, 200, 255, 0.1) 0%, rgba(15, 35, 71, 0.9) 70%);
+  border-color: rgba(90, 200, 255, 0.25);
+  box-shadow: 0 0 24px rgba(90, 200, 255, 0.08);
+}
+
+.team-card[data-role="production"]:hover .team-avatar {
+  box-shadow: 0 0 30px rgba(90, 200, 255, 0.2);
+  border-color: rgba(90, 200, 255, 0.6);
+}
+
+.team-name {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-heading);
+  margin-bottom: 6px;
+}
+
+.team-role {
+  display: inline-block;
+  padding: 3px 14px;
+  border-radius: 9999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 14px;
+}
+
+.team-card[data-role="host"] .team-role {
+  background: rgba(255, 85, 51, 0.15);
+  color: var(--accent-hover);
+  border: 1px solid rgba(255, 85, 51, 0.3);
+}
+
+.team-card[data-role="production"] .team-role {
+  background: rgba(90, 200, 255, 0.1);
+  color: rgba(140, 210, 255, 1);
+  border: 1px solid rgba(90, 200, 255, 0.25);
+}
+
+.team-bio {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--text);
+}
+
+/* Stack team cards on medium screens: 3 on top row, 2 centered below */
+@media (max-width: 900px) {
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .team-card:last-child {
+    grid-column: 1 / -1;
+    max-width: 340px;
+    justify-self: center;
+  }
+}
+
+@media (max-width: 560px) {
+  .team-grid {
+    grid-template-columns: 1fr;
+  }
+  .team-card:last-child {
+    max-width: none;
+  }
+}
+
 /* ── Episodes ── */
 #episodes {
   border-top: 1px solid var(--border);
-  background: radial-gradient(ellipse 60% 40% at 50% 100%, rgba(255, 85, 51, 0.08) 0%, transparent 70%);
 }
 
 .episodes-cta {
