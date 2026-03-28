@@ -7,7 +7,7 @@
   inset: 0;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.7;
+  opacity: 0.85;
 }
 
 .bg-orbs {
@@ -94,6 +94,10 @@
   .bg-orb, .hero-grid {
     animation: none !important;
   }
+  .cosmic-section {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
 
 :root {
@@ -116,6 +120,7 @@
   color: var(--text);
   background: var(--bg);
   -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
 }
 
 *, *::before, *::after {
@@ -226,8 +231,8 @@ ul {
   min-height: calc(100svh - 64px);
   padding: 80px 24px;
   text-align: center;
-  /* Keep the accent glow overlay; base is now transparent → canvas shows through */
-  background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(255, 85, 51, 0.15) 0%, transparent 70%);
+  /* Dark vignette around edges for depth */
+  background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(9, 21, 38, 0.3) 0%, transparent 70%);
 }
 
 /* Perspective grid drawn at the bottom of the hero for 3-D depth */
@@ -265,7 +270,10 @@ ul {
   height: auto;
   margin: 0 auto 32px;
   border-radius: 20px;
-  box-shadow: 0 0 60px rgba(255, 85, 51, 0.2);
+  box-shadow:
+    0 0 40px rgba(0, 0, 0, 0.6),
+    0 0 80px rgba(9, 21, 38, 0.8),
+    0 0 120px rgba(9, 21, 38, 0.5);
 }
 
 .hero-badge {
@@ -348,6 +356,10 @@ ul {
 /* ── Sections ── */
 section {
   padding: 140px 24px;
+  min-height: calc(100svh - 64px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .section-container {
@@ -373,7 +385,7 @@ section {
 
 /* ── About – feature cards ── */
 #about {
-  border-top: 1px solid var(--border);
+  /* no border — sections separated by space travel */
 }
 
 .features-grid {
@@ -422,7 +434,7 @@ section {
 .team-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
+  gap: 40px;
   text-align: center;
 }
 
@@ -540,7 +552,7 @@ section {
 
 /* ── Episodes ── */
 #episodes {
-  border-top: 1px solid var(--border);
+  /* no border — sections separated by space travel */
 }
 
 .episodes-cta {
@@ -550,7 +562,7 @@ section {
 
 /* ── Connect ── */
 #connect {
-  border-top: 1px solid var(--border);
+  /* no border — sections separated by space travel */
 }
 
 .social-list {
@@ -581,7 +593,6 @@ section {
 
 /* ── Footer ── */
 #footer {
-  border-top: 1px solid var(--border);
   padding: 32px 24px;
 }
 
@@ -613,4 +624,17 @@ section {
 
 .footer-copy {
   color: var(--text-muted);
+}
+
+/* ── Cosmic section transitions ── */
+.cosmic-section {
+  opacity: 0;
+  transform: translateY(60px) scale(0.97);
+  transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.cosmic-section.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
 }
