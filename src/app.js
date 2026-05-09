@@ -93,12 +93,6 @@ export const TEAM_MEMBERS = [
     bio: 'The voice that started it all. Jeffy brings bold energy and fearless takes to every conversation.',
   },
   {
-    name: 'Serenity',
-    emoji: '👩🏾‍🦱',
-    role: 'Host',
-    bio: 'Sharp wit meets genuine warmth. Serenity keeps it real and always asks the questions you\'re thinking.',
-  },
-  {
     name: 'Mike',
     emoji: '👨🏿‍🦲',
     role: 'Host',
@@ -113,8 +107,14 @@ export const TEAM_MEMBERS = [
   {
     name: 'OG Dara',
     emoji: '🧑🏿‍🎧',
+    role: 'Host',
+    bio: 'Sound, vision, vibes — OG Dara brings the energy and insight that keeps every conversation alive.',
+  },
+  {
+    name: 'Ambid',
+    emoji: '👨🏿',
     role: 'Production',
-    bio: 'Sound, vision, vibes — OG Dara engineers the magic that brings the whole show together.',
+    bio: 'Ambid handles the craft behind the scenes, making sure every episode looks and sounds its best.',
   },
 ]
 
@@ -179,7 +179,7 @@ export const FAQ_ITEMS = [
   {
     question: 'What is YAP?',
     answer:
-      'YAP – Yet Another Podcast – is an unscripted YouTube show where Jeffy, Serenity, and Mike dive into real conversations about culture, creativity, tech, and everyday life. No filters, no teleprompters.',
+      'YAP – Yet Another Podcast – is an unscripted YouTube show where Jeffy, OG Dara, and Mike dive into real conversations about culture, creativity, tech, and everyday life. No filters, no teleprompters.',
   },
   {
     question: 'How often do you release new episodes?',
