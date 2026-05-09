@@ -23,7 +23,7 @@ import {
 describe('CHANNEL_URL', () => {
   it('points to the YAP YouTube channel', () => {
     expect(CHANNEL_URL).toContain('youtube.com')
-    expect(CHANNEL_URL).toContain('therealyap')
+    expect(CHANNEL_URL).toContain('therealYAP.official')
   })
 })
 
