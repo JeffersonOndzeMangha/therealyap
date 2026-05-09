@@ -1,6 +1,6 @@
 # YAP – Yet Another Podcast
 
-The official website for the [YAP YouTube channel](https://www.youtube.com/@therealyap).
+The official website for the [YAP YouTube channel](https://www.youtube.com/@therealYAP.official).
 
 ## Tech Stack
 

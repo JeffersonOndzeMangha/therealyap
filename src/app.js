@@ -1,4 +1,4 @@
-export const CHANNEL_URL = 'https://www.youtube.com/@therealyap'
+export const CHANNEL_URL = 'https://www.youtube.com/@therealYAP.official'
 /** Permanent Discord server invite link */
 export const DISCORD_URL = 'https://discord.gg/cyVNXY2uV'
 
